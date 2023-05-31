@@ -1,11 +1,11 @@
 import { useQuery } from 'react-query'
 import { BirdDb } from '../../models/Birds'
+import { Link } from 'react-router-dom'
 
 export default function Posts() {
   const { data } = useQuery('posts', () =>
     fetch('/api/v1/birds/limit').then((res) => res.json())
   )
-  console.log(data)
   return (
     <section>
       <h2>Recent Spottings...</h2>
@@ -21,7 +21,9 @@ export default function Posts() {
         ))}
       </div>
       <div className="center-btn">
-        <button>See More...</button>
+        <Link to={'/view'} className="Link-btn">
+          See More...
+        </Link>
       </div>
     </section>
   )

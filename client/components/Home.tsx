@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Home() {
   return (
     <section>
@@ -5,7 +7,9 @@ export default function Home() {
         <div>
           <h1>Found a Bird?</h1>
           <p>Share it with our community</p>
-          <button>Get Started</button>
+          <Link to={'/post'} className="Link-btn">
+            Get Started
+          </Link>
         </div>
         <img
           className="hero-img"

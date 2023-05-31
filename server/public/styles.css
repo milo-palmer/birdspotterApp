@@ -66,3 +66,27 @@ section {
   text-align: center;
   margin-top: 35px;
 }
+
+button, .Link-btn{
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: 22px;
+  transition: background-color 200ms, color 200ms;
+}
+
+button:hover, .Link-btn:hover{
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.Link-btn{
+  text-decoration: none;
+  color: black
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
