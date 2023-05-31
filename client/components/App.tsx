@@ -1,24 +1,16 @@
-import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../hooks'
-import { fetchFruits } from '../slices/fruits'
+import { Route, Routes } from 'react-router-dom'
+
+import Nav from './Nav'
+import Root from './Root'
 
 function App() {
-  const fruits = useAppSelector((state) => state.fruits)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchFruits())
-  }, [dispatch])
-
   return (
     <>
       <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>
-          {fruits.map((fruit) => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Root />} />
+        </Routes>
       </div>
     </>
   )
