@@ -11,13 +11,13 @@ export default function Posts() {
       <h2>Recent Spottings...</h2>
       <div className="card-container">
         {data?.map((post: BirdDb) => (
-          <div key={post.id} className="post-card">
+          <Link to={`/view/${post.id}`} key={post.id} className="post-card">
             <img src={post.image} alt="Bird Spotting" className="post-img" />
             <div className="post-text">
               <p>{post.name}</p>
               <p>{post.description}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="center-btn">

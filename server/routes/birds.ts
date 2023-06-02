@@ -21,4 +21,24 @@ router.get('/limit', async (req, res) => {
   }
 })
 
+router.post('/', async (req, res) => {
+  try {
+    const post = req.body
+    await db.addPost(post)
+    res.status(201).send('Created Successfully')
+  } catch (error) {
+    res.status(500)
+  }
+})
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id
+  try {
+    const post = await db.getPostById(+id)
+    res.json(post)
+  } catch (error) {
+    res.status(500)
+  }
+})
+
 export default router
