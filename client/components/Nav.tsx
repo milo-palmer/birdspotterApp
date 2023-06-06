@@ -1,6 +1,18 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 export default function Nav() {
+  const { logout, loginWithRedirect } = useAuth0()
+
+  const handleSignOut = () => {
+    logout()
+  }
+
+  const handleSignIn = () => {
+    loginWithRedirect()
+  }
+
   return (
     <nav>
       <Link to={'/'}>
@@ -18,6 +30,12 @@ export default function Nav() {
           <li>Make a Post</li>
         </Link>
       </ul>
+      <IfAuthenticated>
+        <button onClick={handleSignOut}>Sign Out</button>
+      </IfAuthenticated>
+      <IfNotAuthenticated>
+        <button onClick={handleSignIn}>Sign In</button>
+      </IfNotAuthenticated>
     </nav>
   )
 }

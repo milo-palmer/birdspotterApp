@@ -43,6 +43,7 @@ section {
 
 .card-container{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 20px;
 }
@@ -58,6 +59,7 @@ section {
   color: black;
   border: 1px solid rgba(0, 0, 0, 0.313);
   cursor: pointer;
+  margin-bottom: 60px;
 }
 
 .post-text{

@@ -39,7 +39,9 @@
     ]
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.0",
     "@redux-devtools/extension": "^3.2.3",
+    "auth0": "^3.4.0",
     "express": "^4.17.2",
     "knex": "^2.3.0",
     "pg": "^8.8.0",
