@@ -16,3 +16,7 @@ export function addPost(post: Bird, db = connection) {
 export function getPostById(id: number, db = connection) {
   return db('birds').where('id', id).first()
 }
+
+export function deletePost(id: number, db = connection) {
+  return db('birds').where('id', id).del()
+}

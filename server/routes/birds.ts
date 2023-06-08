@@ -41,4 +41,14 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.delete('/', async (req, res) => {
+  const id = req.body.id
+  try {
+    await db.deletePost(id)
+    res.status(201).send('Deleted Successfully')
+  } catch (error) {
+    res.status(500)
+  }
+})
+
 export default router
