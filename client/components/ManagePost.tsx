@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-export default function Post() {
+export default function ManagePost() {
   const { id } = useParams()
 
   const { data } = useQuery(`bird${id}`, () =>
@@ -10,12 +10,9 @@ export default function Post() {
 
   return (
     <section>
+      <h2>Manage Post</h2>
       <h2>{data?.name}</h2>
-      <img src={data?.image} alt="" className="img-fit-to-div" />
       <p>{data?.description}</p>
-      <Link to={`manage`} className="Link-btn">
-        Manage
-      </Link>
     </section>
   )
 }
