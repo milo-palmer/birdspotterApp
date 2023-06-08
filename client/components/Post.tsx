@@ -11,7 +11,7 @@ export default function Post() {
   return (
     <section>
       <h2>{data?.name}</h2>
-      <img src={data?.image} alt="" />
+      <img src={data?.image} alt="" className="img-fit-to-div" />
       <p>{data?.description}</p>
     </section>
   )

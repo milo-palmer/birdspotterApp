@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { Post } from '../../models/Birds'
 import { useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function MakePost() {
   const [post, setPost] = useState({} as Post)
+  const [cursor, setCursor] = useState('not-allowed')
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  const { user } = useAuth0()
 
   const newPost = useMutation('posts', {
     mutationFn: (newPost: Post) => {
@@ -57,9 +60,15 @@ export default function MakePost() {
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    if (post.image && post.name && post.description) {
+    if (Object.getOwnPropertyNames(post).length >= 3) {
       newPost.mutate(post)
       navigate('/view')
+    }
+  }
+
+  function handleCursor() {
+    if (Object.getOwnPropertyNames(post).length >= 3) {
+      setCursor(() => '')
     }
   }
 
@@ -70,7 +79,7 @@ export default function MakePost() {
         <input
           type="text"
           id="user"
-          placeholder="EagleTheEgirl"
+          placeholder={user?.nickname || 'eg. EagleTheEgirl'}
           onChange={handleUser}
         />
         <label htmlFor="desc">Write a description: </label>
@@ -85,7 +94,8 @@ export default function MakePost() {
           <button
             type="submit"
             onClick={handleSubmit}
-            style={{ marginTop: '20px' }}
+            onMouseEnter={handleCursor}
+            style={{ marginTop: '20px', cursor }}
           >
             Make Post
           </button>

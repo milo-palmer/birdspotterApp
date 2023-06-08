@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 export default function Nav() {
-  const { logout, loginWithRedirect } = useAuth0()
+  const { logout, loginWithRedirect, isAuthenticated } = useAuth0()
 
   const handleSignOut = () => {
     logout()
@@ -26,9 +26,11 @@ export default function Nav() {
         <Link to={'/view'} className="Link">
           <li>Posts</li>
         </Link>
-        <Link to={'/post'} className="Link">
-          <li>Make a Post</li>
-        </Link>
+        {isAuthenticated && (
+          <Link to={'/post'} className="Link">
+            <li>Make a Post</li>
+          </Link>
+        )}
       </ul>
       <IfAuthenticated>
         <button onClick={handleSignOut}>Sign Out</button>

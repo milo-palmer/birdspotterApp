@@ -94,3 +94,7 @@ form{
   display: flex;
   flex-direction: column;
 }
+
+.img-fit-to-div{
+  width: 100%;
+}
