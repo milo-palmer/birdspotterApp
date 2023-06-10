@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { Post } from '../../models/Birds'
 import { useNavigate } from 'react-router-dom'
@@ -7,10 +7,14 @@ import { useAuth0 } from '@auth0/auth0-react'
 export default function MakePost() {
   const { user } = useAuth0()
 
-  const [post, setPost] = useState({} as Post)
+  const [post, setPost] = useState({ name } as Post)
   const [cursor, setCursor] = useState('not-allowed')
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    setPost({ authId: user?.sub, name: user?.nickname })
+  }, [name, user?.nickname, user?.sub])
 
   const newPost = useMutation('posts', {
     mutationFn: (newPost: Post) => {
@@ -29,7 +33,6 @@ export default function MakePost() {
 
   function handleUser(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.value
-
     setPost((oldPost) => {
       return { ...oldPost, name }
     })
@@ -39,7 +42,7 @@ export default function MakePost() {
     const description = e.target.value
 
     setPost((oldPost) => {
-      return { ...oldPost, description, authId: user?.sub }
+      return { ...oldPost, description }
     })
   }
 
@@ -68,7 +71,7 @@ export default function MakePost() {
   }
 
   function handleCursor() {
-    if (Object.getOwnPropertyNames(post).length >= 3) {
+    if (Object.getOwnPropertyNames(post).length >= 4) {
       setCursor(() => '')
     }
   }
@@ -76,7 +79,7 @@ export default function MakePost() {
   return (
     <section>
       <form>
-        <label htmlFor="user">Enter your username: </label>
+        <label htmlFor="user">Change your username:</label>
         <input
           type="text"
           id="user"

@@ -14,7 +14,7 @@ export default function Posts() {
           <Link to={`/view/${post.id}`} key={post.id} className="post-card">
             <img src={post.image} alt={post.description} className="post-img" />
             <div className="post-text">
-              <p>{post.name}</p>
+              <h3>{post.name}</h3>
               <p>{post.description}</p>
             </div>
           </Link>

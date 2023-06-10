@@ -15,3 +15,7 @@ export interface Post {
   description?: string
   authId?: string
 }
+
+export interface PostWithID extends Post {
+  id: number
+}

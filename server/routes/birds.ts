@@ -31,6 +31,16 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.patch('/', async (req, res) => {
+  try {
+    const post = req.body
+    await db.editPost(post.id, post)
+    res.status(201).send('Updated')
+  } catch (error) {
+    res.status(500)
+  }
+})
+
 router.get('/:id', async (req, res) => {
   const id = req.params.id
   try {
