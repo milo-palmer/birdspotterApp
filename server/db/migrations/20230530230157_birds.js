@@ -8,6 +8,7 @@ exports.up = function (knex) {
     table.string('name')
     table.text('image')
     table.string('description')
+    table.string('auth_id')
   })
 }
 

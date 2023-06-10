@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export default function MakePost() {
+  const { user } = useAuth0()
+
   const [post, setPost] = useState({} as Post)
   const [cursor, setCursor] = useState('not-allowed')
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const { user } = useAuth0()
 
   const newPost = useMutation('posts', {
     mutationFn: (newPost: Post) => {
@@ -38,7 +39,7 @@ export default function MakePost() {
     const description = e.target.value
 
     setPost((oldPost) => {
-      return { ...oldPost, description }
+      return { ...oldPost, description, authId: user?.sub }
     })
   }
 
@@ -60,7 +61,7 @@ export default function MakePost() {
 
   async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    if (Object.getOwnPropertyNames(post).length >= 3) {
+    if (Object.getOwnPropertyNames(post).length >= 4) {
       newPost.mutate(post)
       navigate('/view')
     }
