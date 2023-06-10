@@ -14,7 +14,7 @@ export default function MakePost() {
 
   useEffect(() => {
     setPost({ authId: user?.sub, name: user?.nickname })
-  }, [name, user?.nickname, user?.sub])
+  }, [user?.nickname, user?.sub])
 
   const newPost = useMutation('posts', {
     mutationFn: (newPost: Post) => {
