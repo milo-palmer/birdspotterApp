@@ -98,3 +98,14 @@ form{
 .img-fit-to-div{
   width: 100%;
 }
+
+/* hover of the map image tile */
+.onhover:hover .img-hover{
+  display: block;
+}
+
+/* TODO make css look better */
+.img-hover{
+  display: none;
+  border-radius: 0px 0px 6px 6px;
+}
