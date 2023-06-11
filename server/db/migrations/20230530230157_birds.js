@@ -9,6 +9,8 @@ exports.up = function (knex) {
     table.text('image')
     table.string('description')
     table.string('auth_id')
+    table.string('lat')
+    table.string('lng')
   })
 }
 

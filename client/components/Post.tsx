@@ -48,10 +48,10 @@ export default function Post() {
         </Link>
       )}
       <div style={{ width: '100%', height: '500px' }}>
-        {process.env.REACT_APP_API_KEY && (
+        {process.env.REACT_APP_GOOGLE_MAPS_API_KEY && (
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: process.env.REACT_APP_API_KEY,
+              key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
               language: 'en',
             }}
             defaultCenter={{ lat: -36.857703, lng: 174.761052 }}
@@ -59,8 +59,8 @@ export default function Post() {
           >
             <Marker
               name={data?.name}
-              lat={-36.8589}
-              lng={174.7755}
+              lat={data?.lat}
+              lng={data?.lng}
               image={data?.image}
             />
           </GoogleMapReact>

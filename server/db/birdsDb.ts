@@ -20,6 +20,8 @@ export function addPost(post: Bird, db = connection) {
     description: post.description,
     image: post.image,
     auth_id: post.authId,
+    lat: post.lat,
+    lng: post.lng,
   })
 }
 
@@ -30,7 +32,15 @@ export function editPost(id: number, post: Post, db = connection) {
 export function getPostById(id: number, db = connection) {
   return db('birds')
     .where('id', id)
-    .select('id', 'name', 'description', 'image', 'auth_id as authId')
+    .select(
+      'id',
+      'name',
+      'description',
+      'image',
+      'auth_id as authId',
+      'lat',
+      'lng'
+    )
     .first()
 }
 

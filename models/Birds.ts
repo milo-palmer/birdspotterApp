@@ -3,6 +3,8 @@ export interface Bird {
   image: string
   description: string
   authId: string
+  lat: string
+  lng: string
 }
 
 export interface BirdDb extends Bird {
