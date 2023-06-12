@@ -40,22 +40,28 @@ export default function Post() {
   return (
     <section>
       <h2>{data?.name}</h2>
-      <img src={data?.image} alt="" className="img-fit-to-div" />
-      <p>{data?.description}</p>
       {user?.sub == data?.authId && (
         <Link to={`manage`} className="Link-btn">
-          Manage
+          Manage This Post
         </Link>
       )}
-      <div style={{ width: '100%', height: '500px' }}>
-        {process.env.REACT_APP_GOOGLE_MAPS_API_KEY && (
+      <img
+        src={data?.image}
+        alt=""
+        className="img-fit-to-div"
+        style={{ marginTop: '20px' }}
+      />
+      <p>{data?.description}</p>
+      <div style={{ width: '100%', height: '500px', marginTop: '20px' }}>
+        {process.env.REACT_APP_GOOGLE_MAPS_API_KEY && data?.lat && (
           <GoogleMapReact
             bootstrapURLKeys={{
               key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
               language: 'en',
             }}
             defaultCenter={{ lat: -36.857703, lng: 174.761052 }}
-            defaultZoom={12}
+            defaultZoom={14}
+            center={{ lat: Number(data.lat), lng: Number(data.lng) }}
           >
             <Marker
               name={data?.name}
