@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
 import GoogleMapReact from 'google-map-react'
+import Commments from './Comments'
 
 interface Props {
   name: string
@@ -72,6 +73,7 @@ export default function Post() {
           </GoogleMapReact>
         )}
       </div>
+      <Commments />
     </section>
   )
 }
