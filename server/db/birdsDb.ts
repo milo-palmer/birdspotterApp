@@ -47,3 +47,7 @@ export function getPostById(id: number, db = connection) {
 export function deletePost(id: number, db = connection) {
   return db('birds').where('id', id).del()
 }
+
+export function getCommentByPostId(postId: number, db = connection) {
+  return db('comments').where('post_id', postId).select('id', 'comment')
+}

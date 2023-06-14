@@ -61,4 +61,13 @@ router.delete('/', async (req, res) => {
   }
 })
 
+router.get('/comments/:id', async (req, res) => {
+  try {
+    const comments = await db.getCommentByPostId(+req.params.id)
+    res.json(comments)
+  } catch (error) {
+    res.status(500)
+  }
+})
+
 export default router
