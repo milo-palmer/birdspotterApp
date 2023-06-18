@@ -3,6 +3,7 @@ import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
 import GoogleMapReact from 'google-map-react'
 import Commments from './Comments'
+import MakeComment from './MakeComment'
 
 interface Props {
   name: string
@@ -32,7 +33,7 @@ function Marker(props: Props) {
 
 export default function Post() {
   const { id } = useParams()
-  const { user } = useAuth0()
+  const { user, isAuthenticated } = useAuth0()
 
   const { data } = useQuery(`bird${id}`, () =>
     fetch(`/api/v1/birds/${id}`).then((res) => res.json())
@@ -73,6 +74,7 @@ export default function Post() {
           </GoogleMapReact>
         )}
       </div>
+      {isAuthenticated && <MakeComment id={Number(id)} />}
       <Commments id={Number(id)} />
     </section>
   )

@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.increments('id').primary()
     table.string('comment')
     table.integer('post_id').references('birds.id')
+    table.string('name')
   })
 }
 

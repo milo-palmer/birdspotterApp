@@ -21,3 +21,9 @@ export interface Post {
 export interface PostWithID extends Post {
   id: number
 }
+
+export interface CommentDb {
+  postId: number
+  comment: string
+  name: string
+}

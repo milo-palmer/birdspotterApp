@@ -70,4 +70,14 @@ router.get('/comments/:id', async (req, res) => {
   }
 })
 
+router.post('/comments/:id', async (req, res) => {
+  try {
+    const comment = req.body
+    await db.addCommentByPostId(comment)
+    res.status(201).send('Added Comment')
+  } catch (error) {
+    res.status(500)
+  }
+})
+
 export default router

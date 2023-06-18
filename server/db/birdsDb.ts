@@ -1,4 +1,4 @@
-import { Bird, Post } from '../../models/Birds'
+import { Bird, CommentDb, Post } from '../../models/Birds'
 import connection from './connection'
 
 export function getLimitedPosts(limit: number, db = connection) {
@@ -44,10 +44,19 @@ export function getPostById(id: number, db = connection) {
     .first()
 }
 
-export function deletePost(id: number, db = connection) {
+export async function deletePost(id: number, db = connection) {
+  await db('comments').where('post_id', id).del()
   return db('birds').where('id', id).del()
 }
 
 export function getCommentByPostId(postId: number, db = connection) {
-  return db('comments').where('post_id', postId).select('id', 'comment')
+  return db('comments').where('post_id', postId).select('id', 'comment', 'name')
+}
+
+export function addCommentByPostId(comment: CommentDb, db = connection) {
+  return db('comments').insert({
+    comment: comment.comment,
+    name: comment.name,
+    post_id: comment.postId,
+  })
 }

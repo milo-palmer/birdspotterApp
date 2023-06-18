@@ -7,6 +7,7 @@ interface Props {
 interface Comment {
   id: number
   comment: string
+  name: string
 }
 
 export default function Commments({ id }: Props) {
@@ -14,12 +15,14 @@ export default function Commments({ id }: Props) {
     fetch(`/api/v1/birds/comments/${id}`).then((res) => res.json())
   )
 
-  console.log(data, id)
-
   return (
     <div>
       {data?.map((comment: Comment) => (
-        <p key={comment.id}>{comment.comment}</p>
+        <div key={comment.id}>
+          <p>
+            <strong>{comment.name}</strong> {comment.comment}
+          </p>
+        </div>
       ))}
     </div>
   )
